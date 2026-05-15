@@ -12,6 +12,7 @@ const categoryRoutes = require('./routes/categories');
 const vendorRoutes = require('./routes/vendors');
 const requestRoutes = require('./routes/requests');
 const settingsRoutes = require('./routes/settings');
+const uploadRoutes = require('./routes/upload');
 
 // Middleware
 app.use(cors());
@@ -23,6 +24,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/vendors', vendorRoutes);
 app.use('/api/requests', requestRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/b2b-catalogue')
