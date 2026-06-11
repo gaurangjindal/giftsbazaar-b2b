@@ -32,7 +32,7 @@ export const AdminDashboard = () => {
   const renderContent = () => {
     if (activeMenu === 'dashboard') {
       return (
-        <div style={{ maxWidth: '800px' }}>
+        <div>
           <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', fontWeight: 600 }}>Dashboard Overview</h2>
           
           {/* Analytics Cards */}
