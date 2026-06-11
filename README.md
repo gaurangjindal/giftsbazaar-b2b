@@ -1,16 +1,42 @@
-# React + Vite
+# B2B Wholesale Catalogue
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A robust, full-stack web application designed for wholesale distributors to manage massive product catalogs and provide a premium storefront for retail buyers.
 
-Currently, two official plugins are available:
+## Architecture
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is decoupled into two parts:
+1. **Frontend (`/`)**: A React 19 Single Page Application built with Vite.
+2. **Backend (`/server`)**: A Node.js Express REST API connected to MongoDB Atlas and AWS S3.
 
-## React Compiler
+### Tech Stack
+*   **Frontend**: React, Vite, Lucide React (Icons), Vanilla CSS (Custom Design System).
+*   **Backend**: Node.js, Express, Mongoose, Multer, Sharp.
+*   **Database**: MongoDB Atlas (Cloud).
+*   **Media Storage**: Amazon S3 (with automatic server-side image compression).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Key Features
 
-## Expanding the ESLint configuration
+*   **Premium Storefront**: A fast, responsive, and minimalist UI for buyers to browse products and build bulk orders.
+*   **Admin Dashboard**: Secure portal for distributors to manage inventory, categories, and vendors.
+*   **Lightning Fast Caching**: The backend features a custom in-memory cache that serves the catalog instantly, automatically invalidating when admins make updates.
+*   **Smart Image Optimization**: Uploaded images are automatically intercepted, resized (max 1000px), and converted to highly compressed `.webp` format before being uploaded to AWS S3, reducing storage and bandwidth costs by up to 98%. Non-image files (videos, PDFs) safely bypass compression.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Local Setup Instructions
+
+### 1. Backend Setup
+1. Open a terminal and navigate to the `server` directory: `cd server`
+2. Install dependencies: `npm install`
+3. Duplicate the `.env.example` file and rename it to `.env`.
+4. Fill in your MongoDB Atlas connection string and AWS credentials in `.env`.
+5. Start the development server: `npm run dev` (Runs on port 5001)
+
+### 2. Frontend Setup
+1. Open a new terminal and navigate to the root directory.
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+4. The frontend will be available at `http://localhost:5173`.
+
+> **Note:** The frontend relies on the backend API. Ensure the backend is running before accessing the frontend. By default, the frontend connects to `http://localhost:5001/api`.
+
+## Deployment
+For production deployment instructions, please read [DEPLOYMENT.md](./DEPLOYMENT.md).

@@ -40,7 +40,8 @@ MongoDB Atlas is a fully managed cloud database service. We will use their free 
 
 ## Phase 2: Media Storage Setup (Amazon S3)
 
-The application uses Amazon S3 to store uploaded catalog images.
+The application uses Amazon S3 to store uploaded catalog images. 
+*Note: The backend automatically intercepts uploaded images, resizes them (max 1000px), and converts them to `.webp` format using the `sharp` library before sending them to S3 to save storage and bandwidth.*
 
 1.  **Create an AWS Account**:
     *   Sign up at [aws.amazon.com](https://aws.amazon.com/).
@@ -80,6 +81,7 @@ We will use **Render** as an example, but these steps apply similarly to Heroku 
 
 1.  **Prepare the Code**:
     *   Ensure the [server/package.json](file:///Users/mansukh/Documents/Anti-gravity/b2b%20catalogue%20/server/package.json) contains a start script: `"start": "node server.js"`.
+    *   *Note: The backend relies on the `sharp` library for image compression. Ensure your hosting provider (like Render or Heroku) supports native Node.js addons.*
 2.  **Create a Render Web Service**:
     *   Sign up at [Render](https://render.com/).
     *   Click **New** -> **Web Service**.
@@ -90,7 +92,7 @@ We will use **Render** as an example, but these steps apply similarly to Heroku 
         *   **Build Command**: `npm install`
         *   **Start Command**: `npm start`
 3.  **Configure Environment Variables**:
-    *   Go to the service's **Environment** tab and add:
+    *   Copy the keys from `server/.env.example` and set them in the service's **Environment** tab:
         *   `MONGODB_URI`: *Your MongoDB Atlas connection string from Phase 1*
         *   `PORT`: `10000` (Render will override this, but it is good practice to supply a default)
         *   `AWS_ACCESS_KEY_ID`: *Your IAM Access Key*

@@ -9,13 +9,14 @@
 2. **Customers (Retailers/Buyers):** Need a clean, professional, fast-loading interface to browse high-ticket items, view detailed pricing (Cost vs. Selling vs. MRP), and build a bulk order cart.
 
 ## 3. Core Architecture
-- **Frontend Framework:** React 18 (via Vite)
+- **Frontend Framework:** React 19 (via Vite)
+- **Backend API:** Node.js / Express
+- **Database:** MongoDB Atlas (Cloud)
+- **Media Storage:** Amazon S3 (with server-side `sharp` image compression to `.webp`)
 - **State Management:** React Context API (`AppContext`, `AuthContext`)
-- **Routing:** React Router DOM
-- **Data Persistence:** Client-side local storage (`localStorage`) for rapid prototyping and offline capabilities.
-- **Styling:** Custom Vanilla CSS (`index.css`) utilizing CSS Variables for a clean, minimal light theme.
+- **Performance:** In-memory caching layer for the product catalog (15m TTL).
+- **Styling:** Custom Vanilla CSS (`index.css`) utilizing CSS Variables.
 - **CSV Parsing:** PapaParse (client-side processing)
-- **Icons:** Lucide React
 
 ## 4. Key Features & Requirements
 
@@ -53,9 +54,7 @@ The application is built to handle a complex, high-density CSV structure. Key fi
 - `Image 1`: Mapped to the primary product `imageUrl` (with intelligent fallback handling).
 - `attr_Theme` / `Product Type`: Used for dynamic category generation on the storefront.
 
-## 6. Future Roadmap (Post-Prototype)
-1. **Backend Integration:** Replace `localStorage` with a robust backend database (e.g., PostgreSQL or MongoDB) and a dedicated API (Node.js/Express or Python/Django).
-2. **Real Authentication:** Implement JWT-based authentication via Firebase Auth or Auth0.
-3. **Cloud Object Storage:** Directly integrate with Amazon S3 or Cloudinary for secure, scalable image and video hosting.
-4. **Checkout Integration:** Connect the Shopping Cart to a B2B invoicing system or payment gateway (e.g., Stripe, Razorpay).
-5. **Advanced Filtering:** Add multi-select faceted search (e.g., filter by Color AND Category AND Price Range).
+## 6. Future Roadmap
+1. **Real Authentication:** Implement JWT-based authentication via Firebase Auth or Auth0.
+2. **Checkout Integration:** Connect the Shopping Cart to a B2B invoicing system or payment gateway (e.g., Stripe, Razorpay).
+3. **Advanced Filtering:** Add multi-select faceted search (e.g., filter by Color AND Category AND Price Range).
