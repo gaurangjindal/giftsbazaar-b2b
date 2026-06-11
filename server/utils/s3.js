@@ -10,17 +10,10 @@ const s3 = new AWS.S3({
 });
 
 const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: process.env.AWS_BUCKET_NAME,
-    acl: 'public-read',
-    metadata: function (req, file, cb) {
-      cb(null, { fieldName: file.fieldname });
-    },
-    key: function (req, file, cb) {
-      cb(null, `products/${Date.now().toString()}-${file.originalname}`);
-    }
-  })
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 10 * 1024 * 1024, // Optional: 10MB limit for incoming raw files
+  }
 });
 
 module.exports = { upload, s3 };
